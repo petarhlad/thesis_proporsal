@@ -1,0 +1,98 @@
+\documentclass[12pt,a4paper,twoside,openright]{book}
+
+\input{config/config.tex}
+\usepackage[backend=bibtex, style=alphabetic, maxnames=4, minnames=3, maxbibnames=99]{biblatex}
+
+\bibliography{parts/bibliography.bib}
+\usepackage{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcommand{\titol}{Locally Recoverable Codes Applications}
+\newcommand{\shortitol}{LRC Codes}
+\newcommand{\autor}{Petar Hlad Colic}
+\renewcommand{\cleardoublepage}{}
+
+% PÀGINA INICIAL
+\frontmatter
+%\pagenumbering{Roman}
+\begin{titlepage}
+   	\includegraphics[scale=0.3]{images/entel_logo.png}
+
+   	\begin{center}
+   	\vspace{2em}
+   	\Large\textbf{\textbf{PhD Research Plan}}\\
+   	\vspace{3em}
+   	\rule{\linewidth}{0.5pt}\\
+   	\LARGE\textbf{\MakeUppercase{\titol}} \\
+   	\rule{\linewidth}{0.5pt}\\
+   	\vspace{3em}
+   	
+   	\LARGE\textbf{\autor}\\
+   	\vspace{3em}
+   	
+    \Large\textbf{Information Security Group}\\
+    \Large\textbf{Department of Network Engineering}\\
+   	\Large\textbf{Universitat Politècnica de Catalunya}\\
+   	
+   	
+   	\vspace{2em}
+   	\Large\textbf{Advisor: Marcel Fern\'andez Muñoz}\\
+   	\vspace{3em}
+   	\large\textbf{Barcelona, July 2018}\\
+   	\end{center}
+\end{titlepage} 
+
+%\pagestyle{plain}
+\newpage\null\thispagestyle{empty}\newpage
+\newpage{\cleardoublepage}
+
+\newpage{\cleardoublepage}
+
+\newpage\null\thispagestyle{empty}\newpage
+{\tableofcontents
+\newpage{\cleardoublepage}
+
+\clearpage
+\pagestyle{fancy}
+\setlength{\parskip}{3mm plus1mm minus1.5mm}
+%\thispagestyle{empty}
+%\pagenumbering{arabic}
+\mainmatter
+\input{parts/context}
+
+\newpage{\cleardoublepage}
+\newpage\null\thispagestyle{empty}\newpage
+\input{parts/state_of_art}
+
+\newpage{\cleardoublepage}
+%\newpage\null\thispagestyle{empty}\newpage
+\input{parts/contributions}
+
+\newpage\null\thispagestyle{empty}\newpage
+\newpage{\cleardoublepage}
+\input{parts/progress}
+
+\newpage\null\thispagestyle{empty}\newpage
+\newpage{\cleardoublepage}
+\input{parts/work_plan}
+
+\newpage{\cleardoublepage}
+\printbibliography
+\addcontentsline{toc}{chapter}{Bibliography}
+\newpage\null\thispagestyle{empty}\newpage
+\cleardoublepage
+\newpage
+\appendix
+\pretocmd{\chapter}{%
+  \clearpage
+  \pagenumbering{arabic}%
+  \renewcommand*{\thepage}{\thechapter\arabic{page}}%
+}{}{}
+\clearpage
+\addcontentsline{toc}{chapter}{Apèndixs}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+\setcounter{tocdepth}{2}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+
+\end{document}
