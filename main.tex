@@ -1,7 +1,7 @@
 \documentclass[12pt,a4paper,twoside,openright]{book}
 
 \input{config/config.tex}
-\usepackage[backend=bibtex, style=alphabetic, maxnames=4, minnames=3, maxbibnames=99]{biblatex}
+\usepackage[backend=bibtex, style=numeric, maxnames=4, minnames=3, maxbibnames=99]{biblatex}
 
 \bibliography{parts/bibliography.bib}
 \usepackage{pdfpages}
@@ -10,13 +10,12 @@
 \newcommand{\titol}{Locally Recoverable Codes Applications}
 \newcommand{\shortitol}{LRC Codes}
 \newcommand{\autor}{Petar Hlad Colic}
-\renewcommand{\cleardoublepage}{}
 
 % PÀGINA INICIAL
 \frontmatter
 %\pagenumbering{Roman}
 \begin{titlepage}
-   	\includegraphics[scale=0.3]{images/entel_logo.png}
+   	\includegraphics[scale=0.3]{images/entel_logo.jpg}
 
    	\begin{center}
    	\vspace{2em}
@@ -42,17 +41,9 @@
    	\end{center}
 \end{titlepage} 
 
-%\pagestyle{plain}
-\newpage\null\thispagestyle{empty}\newpage
-\newpage{\cleardoublepage}
-
-\newpage{\cleardoublepage}
-
-\newpage\null\thispagestyle{empty}\newpage
-{\tableofcontents
-\newpage{\cleardoublepage}
-
-\clearpage
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\tableofcontents
+\clearpage{\thispagestyle{empty}\cleardoublepage}
 \pagestyle{fancy}
 \setlength{\parskip}{3mm plus1mm minus1.5mm}
 %\thispagestyle{empty}
@@ -60,39 +51,19 @@
 \mainmatter
 \input{parts/context}
 
-\newpage{\cleardoublepage}
-\newpage\null\thispagestyle{empty}\newpage
+\clearpage{\thispagestyle{empty}\cleardoublepage}
 \input{parts/state_of_art}
-
-\newpage{\cleardoublepage}
-%\newpage\null\thispagestyle{empty}\newpage
+\clearpage{\thispagestyle{empty}\cleardoublepage}
 \input{parts/contributions}
 
-\newpage\null\thispagestyle{empty}\newpage
-\newpage{\cleardoublepage}
+\clearpage{\thispagestyle{empty}\cleardoublepage}
 \input{parts/progress}
 
-\newpage\null\thispagestyle{empty}\newpage
-\newpage{\cleardoublepage}
+\clearpage{\thispagestyle{empty}\cleardoublepage}
 \input{parts/work_plan}
-
-\newpage{\cleardoublepage}
+\cite{1,2,3,4,5}
+\clearpage{\thispagestyle{empty}\cleardoublepage}
 \printbibliography
 \addcontentsline{toc}{chapter}{Bibliography}
-\newpage\null\thispagestyle{empty}\newpage
-\cleardoublepage
-\newpage
-\appendix
-\pretocmd{\chapter}{%
-  \clearpage
-  \pagenumbering{arabic}%
-  \renewcommand*{\thepage}{\thechapter\arabic{page}}%
-}{}{}
-\clearpage
-\addcontentsline{toc}{chapter}{Apèndixs}
-\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-\setcounter{tocdepth}{2}
-\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-
 
 \end{document}
