@@ -1,1 +1,41 @@
 \chapter{Context and motivation}
+
+In recent years the explosion in the volumes of data being stored online has resulted in distributed storage systems transitioning to erasure coding based schemes in order to ensure reliability with low storage overheads. In recent years Locally Recoverable Codes (LRC) emerged as the codes of choice for many such scenarios and have been implemented in a number of large scale systems (\cite{azure}, \cite{hadoop} ).
+
+Classical erasure correcting codes guarantee that data can be recovered if a bounded number of codeword coordinates is erased. However recovering data typically involves accessing all surviving coordinates.
+
+Consider a linear $[n,k,d]_q$ code $\C \subset \FF_q^n$. We say that the $i$-th coordinate of $\C$ has locality $r$, if the value at this coordinate can be recovered from accessing some other $r$ coordinates of $\C$. We say that the code $\C$ has locality $r$ if every symbol of the codeword $x \in \C$ can be recovered from a subset of $r$ other symbols of $x$.
+
+Data storage applications require codes with small redundancy, low locality for information coordinates, large distance, and low locality for parity coordinates.
+
+
+\begin{defn}[LRC Codes]
+A code $\C \subset \FF_q^n$ is LRC with locality $r$ if for every $i \in [n] := \{1,2,...,n\}$ there exists a subset $\R_i \subset [n] \setminus \{i\}$, $\card{\R_i} \leq r$ and a function $\phi_i$ such that for every codeword $\x \in \C$ we have
+\begin{equation}
+\x_i = \phi_i(\{\x_j, \ j \in \R_i \})
+\end{equation}
+This definition can be also rephrased as follows. Given $a \in \FF_q$ consider the sets of codewords
+\[\C(i,a) = \{ x \in \C : x_i = a\}, \quad i \in [n]\]
+The code $\C$ is said to have locality $r$ if for every $i \in [n]$ there exists a subset $\R_i \subset [n] \setminus \{i\}, \ \card{\R_i} \leq r$ such that the restrictions of the sets $\C(i,a)$ to the coordinates in $\R_i$ for different $a$ are disjoint:
+    \begin{equation}
+        \C_{I_i}(i,a) \cap \C_{I_i}(i,a') = \emptyset, \quad a \neq a'
+    \end{equation}
+The subset $I_i$ is called a \textit{recovering set} for the symbol $x_i$.
+\end{defn}
+
+
+A tight Singleton like bound for the redundancy \cite{GHSY12}:
+\begin{equation}
+n - k \geq \left\lceil \frac{k}{r} \right\rceil + d - 2
+\end{equation}
+
+We will refer to codes attaining the bound above as optimal LRC codes.
+
+Let $C \in \FF_q^{k \times n}$. The encoding of $\x \in \FF_q^k$ is given by $\C(\x) = \x^T \cdot C$. Thus the code $\C$ is determined by the set of $n$ points $C = \{ \c_1, ... , \c_n \} \subset \FF_q^k$
+
+$C$ must have full rank for $\C$ to have $k$ information symbols.
+
+The code $\C$ has distance $d$ if and only if for every $S \subseteq C$ such that $\mbox{Rank}(S) \leq k-1$, 
+\begin{equation}
+\card{S} \leq n-d
+\end{equation}
