@@ -1,7 +1,7 @@
 \documentclass[12pt,a4paper,twoside,openright]{book}
 
 \input{config/config.tex}
-\usepackage[backend=bibtex, style=numeric, maxnames=4, minnames=3, maxbibnames=99]{biblatex}
+\usepackage[hyperref,backend=bibtex,backref,backrefstyle=none, style=numeric, maxnames=4, minnames=3, maxbibnames=99]{biblatex}
 
 \bibliography{parts/bibliography.bib}
 \usepackage{pdfpages}
@@ -56,12 +56,11 @@
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \input{parts/contributions}
 
-\clearpage{\thispagestyle{empty}\cleardoublepage}
-\input{parts/progress}
+%\clearpage{\thispagestyle{empty}\cleardoublepage}
+%\input{parts/progress}
 
-\clearpage{\thispagestyle{empty}\cleardoublepage}
-\input{parts/work_plan}
-\cite{1,2,3,4,5}
+%\clearpage{\thispagestyle{empty}\cleardoublepage}
+%\input{parts/work_plan}
 
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \phantomsection
