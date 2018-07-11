@@ -11,7 +11,7 @@
 \cite{bounds_on_LRC}
 \cite{bounds_on_LRC_t}
 
-\begin{thm}
+\begin{thm}[\cite{bounds_on_LRC}]
 Let $\C$ be an $(n,k,r,t)$ LRC code with $t$ disjoint recovering sets of size $r$. Then the rate of $C$ satisfies
 \begin{equation}
 \frac{k}{n} \leq \frac{1}{\prod_{j=1}^t(1+\frac{1}{jr})}
@@ -23,4 +23,8 @@ d \leq n - \sum_{i=0}^t \left\lfloor \frac{k-1}{r^i} \right\rfloor
 \end{thm}
 
 \section{List decoding of LRC codes}
-Empty
+
+
+A code of length $n$ is called $(\tau,\ell)$-list decodable if the Hamming sphere of radius $\tau$ centered at any vector $v$ of length $n$ always contains at most $\ell$ codewords $c \in \C$. It was shown by \citeauthor{list_decoding} in \cite{list_decoding} that any code of length $n$ and distance $d$ is $(\tau_J, \ell)$-list decodable where $\tau_J = n - \sqrt{n(n-d)}$ and $\ell \in poly(n)$.
+
+It was recently shown by \citeauthor{list_decoding_LRC} in \cite{list_decoding_LRC} that 

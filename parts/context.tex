@@ -1,6 +1,8 @@
 \chapter{Context and motivation}
 
-In recent years the explosion in the volumes of data being stored online has resulted in distributed storage systems transitioning to erasure coding based schemes in order to ensure reliability with low storage overheads. In recent years Locally Recoverable Codes (LRC) emerged as the codes of choice for many such scenarios and have been implemented in a number of large scale systems (\cite{azure}, \cite{hadoop}).
+In recent years the explosion in the volumes of data being stored online has resulted in distributed storage systems transitioning to erasure coding based schemes in order to ensure reliability with low storage overheads. On such a massive scale, unreachable or failed servers are no longer an exception but a regular occurrence and recovery from such events has to be done efficiently.
+
+In recent years Locally Recoverable Codes (LRC) emerged as the codes of choice for many such scenarios and have been implemented in a number of large scale systems (\cite{azure}, \cite{hadoop}).
 
 Classical erasure correcting codes guarantee that data can be recovered if a bounded number of codeword coordinates is erased. However recovering data typically involves accessing all surviving coordinates. LRC codes have the property that a symbol of the codeword can be recovering accessing few other symbols of the codeword (called the \textit{recovering set}.
 
