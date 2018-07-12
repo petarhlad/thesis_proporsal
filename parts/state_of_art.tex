@@ -1,1 +1,60 @@
 \chapter{State of the Art}
+Consider a linear $[n,k,d]_q$ code $\C \subset \FF_q^n$, where $q$ is a prime power. We say that the $i$-th coordinate of $\C$ has locality $r$, if the value at this coordinate can be recovered from accessing some other $r$ coordinates of $\C$. We say that the code $\C$ has locality $r$ if every symbol of the codeword $x \in \C$ can be recovered from a subset of $r$ other symbols of $x$.
+
+\begin{defn}[LRC Codes]
+A code $\C \subset \FF_q^n$ is a \textit{locally recoverable code} (LRC) with locality $r$ if for every $i \in [n]$ there exists a subset $\R_i \subset [n] \setminus \{i\}$, $\card{\R_i} \leq r$ and a map $\phi_i$ such that for every codeword $\x \in \C$ we have
+\begin{equation}
+\x_i = \phi_i(\{\x_j, \ j \in \R_i \})
+\end{equation}
+This definition can be also rephrased as follows. Given $a \in \FF_q$ consider the sets of codewords
+\[\C(i,a) = \{ x \in \C : x_i = a\}, \quad i \in [n]\]
+The code $\C$ is said to have locality $r$ if for every $i \in [n]$ there exists a subset $\R_i \subset [n] \setminus \{i\}, \ \card{\R_i} \leq r$ such that the restrictions of the sets $\C(i,a)$ to the coordinates in $\R_i$ for different $a$ are disjoint:
+    \begin{equation}
+        \C_{I_i}(i,a) \cap \C_{I_i}(i,a') = \emptyset, \quad a \neq a'
+    \end{equation}
+The subset $I_i$ is called a \textit{recovering set} for the symbol $x_i$.
+\end{defn}
+
+\begin{defn}[t-LRC Codes]
+A code $\C$ is said to have $t$ disjoint recovering sets if for every $i \in [n]$ there are pairwise disjoint subsets $R_i^1, ..., R_i^t \subset [n] \setminus \{i\}$ such that for all $j =1, ..., t$ and every pair of symbols $a,a' \in \FF_q, \ a \neq a'$
+\begin{equation}
+\C(i,a)_{R_i^j} \cap \C(i,a')_{R_i^j} = \emptyset
+\end{equation}
+
+\end{defn}
+
+For linear LRC codes, the relation between a symbol $i$ and its recovering set $I_i$ is linear. Thus, any symbol in $I_i \cup \{i\}$ can be recovered from the remaining symbols. We then call $I_i \cup \{i\}$ a \textit{repair group}.
+
+\begin{thm}[\cite{GHSY12}]
+Let $\C$ be an $(n,k,r)$ LRC code. The rate of $\C$ satisfies
+\begin{equation}
+    \frac{k}{n} \leq \frac{r}{r+1}
+\end{equation}
+
+\noindent The minimum distance of $\C$ satisfies:
+\begin{equation}\label{eq:opt_lrc}
+d \leq n -k - \left\lceil \frac{k}{r} \right\rceil + 2
+\end{equation}
+
+
+\end{thm}
+
+
+\begin{thm}[\cite{RPDV16, wang14}]
+
+For $(n,k,r,t)$ LRC codes with $t \geq 2$ disjoint recovering sets :
+\begin{equation}\label{eq:opt_lrc-t}
+    d \leq n-k + 2 - \left\lceil \frac{t(k-1)+1}{t(r-1)+1} \right\rceil
+\end{equation}
+\end{thm}
+
+We will refer to codes attaining the bound \ref{eq:opt_lrc} (the bound \ref{eq:opt_lrc-t} in case $t \geq 2$) as optimal LRC codes.
+
+Let $C \in \FF_q^{k \times n}$. The encoding of $\x \in \FF_q^k$ is given by $\C(\x) = \x^T \cdot C$. Thus the code $\C$ is determined by the set of $n$ points $C = \{ \c_1, ... , \c_n \} \subset \FF_q^k$
+
+$C$ must have full rank for $\C$ to have $k$ information symbols.
+
+The code $\C$ has distance $d$ if and only if for every $S \subseteq C$ such that $\mbox{Rank}(S) \leq k-1$, 
+\begin{equation}
+\card{S} \leq n-d
+\end{equation}

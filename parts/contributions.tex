@@ -7,24 +7,34 @@
 \cite{LRC_on_alg_curves, LRC_on_alg_curves2, LRC_fibers}
 
 \section{Bounds on codes with locality}
-\cite{combinatorial_bounds}
-\cite{bounds_on_LRC}
-\cite{bounds_on_LRC_t}
+\nocite{combinatorial_bounds}
+\nocite{bounds_on_LRC}
+\nocite{bounds_on_LRC_t}
 
-\begin{thm}[\cite{bounds_on_LRC}]
+\begin{thm}[\cite{bounds_on_LRC}]\label{thm:lrc_rate}
 Let $\C$ be an $(n,k,r,t)$ LRC code with $t$ disjoint recovering sets of size $r$. Then the rate of $C$ satisfies
-\begin{equation}
+\begin{equation}\label{eq:rate_lrc}
 \frac{k}{n} \leq \frac{1}{\prod_{j=1}^t(1+\frac{1}{jr})}
 \end{equation}
 The minimum distance of $C$ is bounded above as follows:
-\begin{equation}
+\begin{equation}\label{eq:ass_rate_lrc}
 d \leq n - \sum_{i=0}^t \left\lfloor \frac{k-1}{r^i} \right\rfloor
 \end{equation}
 \end{thm}
+
+The bound \ref{eq:ass_rate_lrc} gives the following assymptotic rate bound for LRC codes:
+\begin{equation}
+R_q^{(t)}(r,\delta) \leq \frac{r^t(r-1)}{r^{t+1}-1}(1-\delta), \quad 0 \leq \delta \leq 1
+\end{equation}
+
+The lower bound \ref{eq:rate_lrc} appears to be far from tight. \citeauthor{bounds_on_LRC_t} in \cite{bounds_on_LRC_t} said they believe that the rate $\left(\frac{r}{r+1}\right)^t$ is the largest possible for a LRC-$t$ code as long as $t$ is not too large (e.g. $t \in O(\log n)$). This rate can be achieved constructing a $t$-fold power of the binary $(r+1,r)$ single-parity-check code.
+
+Theorem \ref{thm:lrc_rate} is proved applying probabilistic method techniques on the properties of a graph. The problem of optimizing the bound of the rate of LRC-t codes will be studied, and one of the ways could be following a similar proof considering some restrictions that were not considered in \cite{bounds_on_LRC}.
+
 
 \section{List decoding of LRC codes}
 
 
 A code of length $n$ is called $(\tau,\ell)$-list decodable if the Hamming sphere of radius $\tau$ centered at any vector $v$ of length $n$ always contains at most $\ell$ codewords $c \in \C$. It was shown by \citeauthor{list_decoding} in \cite{list_decoding} that any code of length $n$ and distance $d$ is $(\tau_J, \ell)$-list decodable where $\tau_J = n - \sqrt{n(n-d)}$ and $\ell \in poly(n)$.
 
-It was recently shown by \citeauthor{list_decoding_LRC} in \cite{list_decoding_LRC} that 
+It was recently shown by \citeauthor{list_decoding_LRC} in \cite{list_decoding_LRC} that in certain cases, t
