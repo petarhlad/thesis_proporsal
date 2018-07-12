@@ -49,12 +49,3 @@ For $(n,k,r,t)$ LRC codes with $t \geq 2$ disjoint recovering sets :
 \end{thm}
 
 We will refer to codes attaining the bound \ref{eq:opt_lrc} (the bound \ref{eq:opt_lrc-t} in case $t \geq 2$) as optimal LRC codes.
-
-Let $C \in \FF_q^{k \times n}$. The encoding of $\x \in \FF_q^k$ is given by $\C(\x) = \x^T \cdot C$. Thus the code $\C$ is determined by the set of $n$ points $C = \{ \c_1, ... , \c_n \} \subset \FF_q^k$
-
-$C$ must have full rank for $\C$ to have $k$ information symbols.
-
-The code $\C$ has distance $d$ if and only if for every $S \subseteq C$ such that $\mbox{Rank}(S) \leq k-1$, 
-\begin{equation}
-\card{S} \leq n-d
-\end{equation}
