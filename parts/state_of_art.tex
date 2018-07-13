@@ -1,4 +1,7 @@
 \chapter{State of the Art}
+
+\section{Definition of LRC codes}
+
 Consider a linear $[n,k,d]_q$ code $\C \subset \FF_q^n$, where $q$ is a prime power. We say that the $i$-th coordinate of $\C$ has locality $r$, if the value at this coordinate can be recovered from accessing some other $r$ coordinates of $\C$. We say that the code $\C$ has locality $r$ if every symbol of the codeword $x \in \C$ can be recovered from a subset of $r$ other symbols of $x$.
 
 \begin{defn}[LRC Codes]
@@ -8,7 +11,7 @@ A code $\C \subset \FF_q^n$ is a \textit{locally recoverable code} (LRC) with lo
 \end{equation}
 This definition can be also rephrased as follows. Given $a \in \FF_q$ consider the sets of codewords
 \[\C(i,a) = \{ x \in \C : x_i = a\}, \quad i \in [n]\]
-The code $\C$ is said to have locality $r$ if for every $i \in [n]$ there exists a subset $\R_i \subset [n] \setminus \{i\}, \ \card{\R_i} \leq r$ such that the restrictions of the sets $\C(i,a)$ to the coordinates in $\R_i$ for different $a$ are disjoint:
+The code $\C$ is said to have locality $r$ if for every $i \in [n]$ there exists a subset ${\R_i \subset [n] \setminus \{i\}}, \ \card{\R_i} \leq r$ such that the restrictions of the sets $\C(i,a)$ to the coordinates in $\R_i$ for different $a$ are disjoint:
     \begin{equation}
         \C_{I_i}(i,a) \cap \C_{I_i}(i,a') = \emptyset, \quad a \neq a'
     \end{equation}
@@ -25,7 +28,9 @@ A code $\C$ is said to have $t$ disjoint recovering sets if for every $i \in [n]
 
 For linear LRC codes, the relation between a symbol $i$ and its recovering set $I_i$ is linear. Thus, any symbol in $I_i \cup \{i\}$ can be recovered from the remaining symbols. We then call $I_i \cup \{i\}$ a \textit{repair group}.
 
-\begin{thm}[\cite{GHSY12}]
+\section{Bounds on parameters of LRC codes}
+\citeauthor*{GHSY12} proved in \cite{GHSY12} the following bounds:
+\begin{thm}
 Let $\C$ be an $(n,k,r)$ LRC code. The rate of $\C$ satisfies
 \begin{equation}
     \frac{k}{n} \leq \frac{r}{r+1}
@@ -42,10 +47,42 @@ d \leq n -k - \left\lceil \frac{k}{r} \right\rceil + 2
 
 \begin{thm}[\cite{RPDV16, wang14}]
 
-For $(n,k,r,t)$ LRC codes with $t \geq 2$ disjoint recovering sets :
+For $(n,k,r,t)$ LRC codes with $t \geq 2$ disjoint recovering sets:
 \begin{equation}\label{eq:opt_lrc-t}
     d \leq n-k + 2 - \left\lceil \frac{t(k-1)+1}{t(r-1)+1} \right\rceil
 \end{equation}
 \end{thm}
 
 We will refer to codes attaining the bound \ref{eq:opt_lrc} (the bound \ref{eq:opt_lrc-t} in case $t \geq 2$) as optimal LRC codes.
+
+In \cite{bounds_on_LRC}, \citeauthor{bounds_on_LRC} find many new bounds on the distance and rate of LRC codes as well as assymptotic bounds.
+
+\begin{thm}\label{thm:lrc_rate}
+Let $\C$ be an $(n,k,r,t)$ LRC code with $t$ disjoint recovering sets of size $r$. Then the rate of $C$ satisfies
+\begin{equation}\label{eq:rate_lrc}
+\frac{k}{n} \leq \frac{1}{\prod_{j=1}^t(1+\frac{1}{jr})}
+\end{equation}
+The minimum distance of $C$ is bounded above as follows:
+\begin{equation}\label{eq:ass_rate_lrc}
+d \leq n - \sum_{i=0}^t \left\lfloor \frac{k-1}{r^i} \right\rfloor
+\end{equation}
+\end{thm}
+
+\begin{equation}
+R_q (r,\delta) \geq 1 - \min_{0 < s \leq 1} \left\lbrace \frac{1}{r+1}\log_q ((1+(q-1)s)^{r+1}+(q-1)(1-s)^{r+1})-\delta \log_q s \right\rbrace
+\end{equation}
+
+\section{Algebraic Geometric Codes}
+
+Let $X$ be a nonsingular irreducible projective curve over $K=\FF_q$ with genus $g$ and let $K(X)$ be the function field of $X$. For a divisor $G$ on $X$ define the vector space $L(G) := \{ f \in K(X) \vert div(f) + G > 0\} \cup \{0\}$.
+
+Assume $P_1, ..., P_n$ are rational points on the curve $X$ and let $D = P_1 + ... + P_n$. Assume $G$ is a divisor on $X$ with rational points and support disjoint from $D$. Also assume that $2g - 2 < deg(G) < n$.
+
+\begin{defn}
+The linear code $\C(D,G)$ over $\FF_q$ is the image of the linear map $\alpha: L(G) \rightarrow \FF_q^n$ where $\alpha(f) = (f(P_1), ... , f(P_n))$.
+\end{defn}
+
+\begin{thm}
+The code $\C(D,G)$ has parameters $[n,k,d]_q$ with
+$$n = deg(D), \quad k = deg(G)-g+1, \quad d \geq d^\ast = n - deg(G)$$
+\end{thm}
