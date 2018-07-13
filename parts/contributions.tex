@@ -1,43 +1,14 @@
 \chapter{Open Problems}
-\cite{MR_LRC}
-\section{Constructions of binary LRC codes}
-\cite{binary_constructions}
+Alexander Barg is one of the main contributors in the topic of LRC codes. When discussing with him about open problems in the field, he said that the main problems have already been worked on, and the remaining problems are non-trivial and hard. Therefore, specific problems will be studied in this PhD thesis.
 
-\section{Constructions of codes on algebraic curves}
-\cite{LRC_on_alg_curves, LRC_on_alg_curves2, LRC_fibers}
-
-Let $\varphi: X \rightarrow Y$ be a degree-$(r+1)$ morphism of projective smooth irreducible curves over $K=\FF_q$. Let $Q_1, ..., Q_s$ be points of $Y(K)$ s.t. for each $Q_i$ there are $r+1$ points $P_{i,0},...,P_{i,r}$ in $X(K)$ that map to $Q_i$.
-
-The map $\varphi$ induces an injection of function fields $\varphi^\ast: K(Y) \hookrightarrow K(X)$ that makes $K(X)$ a degree-$(r+1)$ extension of $K(Y)$. Let $e_1,...,e_r$ be elements of $K(X)$ that are l.i. over $K(Y)$ and whose sets of poles are disjoint from the $P_{i,j}$, and let $f_1, ..., f_t$ be elements of $K(Y)$ that are l.i. over $K$ and whose sets of poles are disjoint from the $Q_i$.
-
-Given a vector $\mathbf{a} = (a_{i,j}) \in K^{r \times t}$ we define
-$$ f_{\mathbf{a}} := \sum_{i=1}^r e_i \sum_{j=1}^t a_{i,j} \varphi^\ast f_j$$
-
-Let $D$ be the smallest effective divisor on $X$ so that each product $e_i \varphi^\ast f_j$ lies in $L(D)$, and let $\delta := deg(D)$.
-Define the code $\C := \{f_{\mathbf{a}}(P_{i,j}) \ \vert \ a \in K^{r \times t}\} \subseteq K^{s \times (r+1)}$.
-If $\delta < s(r+1)$ then the code $\C$ is linear of dimension $k=rt$, length $n = s(r+1)$, and minimum distance $d$ at least $s(r+1) - \delta$.
-
-\section{Bounds on codes with locality}
-\nocite{combinatorial_bounds}
-\nocite{bounds_on_LRC}
-\nocite{bounds_on_LRC_t}
-
-The bound \ref{eq:ass_rate_lrc} gives the following assymptotic rate bound for LRC codes:
-\begin{equation}
-R_q^{(t)}(r,\delta) \leq \frac{r^t(r-1)}{r^{t+1}-1}(1-\delta), \quad 0 \leq \delta \leq 1
-\end{equation}
-
-The lower bound \ref{eq:rate_lrc} appears to be far from tight. \citeauthor{bounds_on_LRC_t} in \cite{bounds_on_LRC_t} said they believe that the rate $\left(\frac{r}{r+1}\right)^t$ is the largest possible for a LRC-$t$ code as long as $t$ is not too large (e.g. $t \in O(\log n)$). This rate can be achieved constructing a $t$-fold power of the binary $(r+1,r)$ single-parity-check code.
+\noindent Problems that will be studied:
+\begin{itemize}[align = left, leftmargin=*]
+\item[\textbf{Improvement of binary LRC codes decoding:}] Following the work in \cite{binary_LRC_decoding2}, decoding of binary LRC codes that are not cyclic will be studied.
+\item[\textbf{New constructions of LRC codes on algebraic curves:}] Following the work in \cite{LRC_on_alg_curves} and \cite{LRC_on_alg_curves2}, new constructions of LRC codes over algebraic varieties will be searched, looking for optimal LRC codes with small field size.
+\item[\textbf{Improvement of bounds for LRC-$t$ codes:}] The lower bound \ref{eq:rate_lrc} appears to be far from tight. \citeauthor{bounds_on_LRC_t} in \cite{bounds_on_LRC_t} said they believe that the rate $\left(\frac{r}{r+1}\right)^t$ is the largest possible for a LRC-$t$ code as long as $t$ is not too large (e.g. $t \in O(\log n)$). This rate can be achieved constructing a $t$-fold power of the binary $(r+1,r)$ single-parity-check code.
 
 Theorem \ref{thm:lrc_rate} is proved applying probabilistic method techniques on the properties of a graph. The problem of optimizing the bound of the rate of LRC-t codes will be studied, and one of the ways could be following a similar proof considering some restrictions that were not considered in \cite{bounds_on_LRC}.
 
-Also, existence of $t$-LRC codes with arbitrary $t$ and $r$ seems to be a difficult problem.
+\item[\textbf{List decoding of LRC codes:}] the problem will be studied to search for new families of LRC codes that could be list decoded beyond the Johnson radius.
 
-\section{List decoding of LRC codes}
-
-
-A code of length $n$ is called $(\tau,\ell)$-list decodable if the Hamming sphere of radius $\tau$ centered at any vector $v$ of length $n$ always contains at most $\ell$ codewords $c \in \C$. It was shown by \citeauthor{list_decoding} in \cite{list_decoding} that any code of length $n$ and distance $d$ is $(\tau_J, \ell)$-list decodable where $\tau_J = n - \sqrt{n(n-d)}$ is the Johnson radius and $\ell \in poly(n)$.
-
-It was recently shown by \citeauthor{list_decoding_LRC} in \cite{list_decoding_LRC} that the list decoding radius of certain LRC codes exceed the Johnson radius and give a general list decoding algorithm. The complexity of the algorithm is polynomial in $n$ when the number of repairing groups is constant, otherwise it grows exponentially.
-
-This problem will be studied to research for other families of LRC codes that could be list decoded beyond the Johnson radius.
+\end{itemize}

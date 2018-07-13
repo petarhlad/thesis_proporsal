@@ -55,7 +55,7 @@ For $(n,k,r,t)$ LRC codes with $t \geq 2$ disjoint recovering sets:
 
 We will refer to codes attaining the bound \ref{eq:opt_lrc} (the bound \ref{eq:opt_lrc-t} in case $t \geq 2$) as optimal LRC codes.
 
-In \cite{bounds_on_LRC}, \citeauthor{bounds_on_LRC} find many new bounds on the distance and rate of LRC codes as well as assymptotic bounds.
+In \cite{bounds_on_LRC}, \citeauthor{bounds_on_LRC} found new bounds on the distance and rate of LRC codes as well as assymptotic bounds.
 
 \begin{thm}\label{thm:lrc_rate}
 Let $\C$ be an $(n,k,r,t)$ LRC code with $t$ disjoint recovering sets of size $r$. Then the rate of $C$ satisfies
@@ -74,15 +74,31 @@ R_q (r,\delta) \geq 1 - \min_{0 < s \leq 1} \left\lbrace \frac{1}{r+1}\log_q ((1
 
 \section{Algebraic Geometric Codes}
 
-Let $X$ be a nonsingular irreducible projective curve over $K=\FF_q$ with genus $g$ and let $K(X)$ be the function field of $X$. For a divisor $G$ on $X$ define the vector space $L(G) := \{ f \in K(X) \vert div(f) + G > 0\} \cup \{0\}$.
+A family of optimal LRC codes was described by \citeauthor{optimal_LRC} in \cite{optimal_LRC} which are subcodes of Reed-Solomon codes, considering a polynomial that is constant on each part of a partition of the evaluation points set. The length of these codes is upper bounded by $q$ (same as RS codes). Then an algebraic geometric approach of an optimal LRC code is obtained from maps of degree $r+1$ from $\P^1_{\FF_q}$ to $\P^1_{\FF_q}$.
 
-Assume $P_1, ..., P_n$ are rational points on the curve $X$ and let $D = P_1 + ... + P_n$. Assume $G$ is a divisor on $X$ with rational points and support disjoint from $D$. Also assume that $2g - 2 < deg(G) < n$.
+In \cite{LRC_on_alg_curves}, the authors generalized this idea and constructed LRC codes from morphisms on algebraic curves (Hermitian curves and Garcia-Stichtenoth curves). In \cite{LRC_on_alg_curves2} the authors expand on the constructions of \cite{LRC_on_alg_curves} to produce families of LRC codes coming from a larger variety of curves, as well as from higher-dimensional varieties. They construct optimal LRC codes with code length larger than the size of the alphabet (e.g. $n = q^2 + 2$ and $n = q^2 - 1$).
 
-\begin{defn}
-The linear code $\C(D,G)$ over $\FF_q$ is the image of the linear map $\alpha: L(G) \rightarrow \FF_q^n$ where $\alpha(f) = (f(P_1), ... , f(P_n))$.
-\end{defn}
+%Let $X$ be a nonsingular irreducible projective curve over $K=\FF_q$ with genus $g$ and let $K(X)$ be the function field of $X$. For a divisor $G$ on $X$ define the vector space $L(G) := \{ f \in K(X) \vert div(f) + G > 0\} \cup \{0\}$.
+%
+%Assume $P_1, ..., P_n$ are rational points on the curve $X$ and let $D = P_1 + ... + P_n$. Assume $G$ is a divisor on $X$ with rational points and support disjoint from $D$. Also assume that $2g - 2 < deg(G) < n$.
+%
+%\begin{defn}
+%The linear code $\C(D,G)$ over $\FF_q$ is the image of the linear map $\alpha: L(G) \rightarrow \FF_q^n$ where $\alpha(f) = (f(P_1), ... , f(P_n))$.
+%\end{defn}
+%
+%\begin{thm}
+%The code $\C(D,G)$ has parameters $[n,k,d]_q$ with
+%$$n = deg(D), \quad k = deg(G)-g+1, \quad d \geq d^\ast = n - deg(G)$$
+%\end{thm}
 
-\begin{thm}
-The code $\C(D,G)$ has parameters $[n,k,d]_q$ with
-$$n = deg(D), \quad k = deg(G)-g+1, \quad d \geq d^\ast = n - deg(G)$$
-\end{thm}
+\section{Cyclic and Binary LRC codes}
+Binary error correcting codes are of special interest due to practical reasons.
+
+In \cite{binary_LRC_decoding2} authors show how the presence of locality within a binary cyclic code can be exploited to improve decoding performance and reduce decoding complexity. They approach the problem with ordered statistics decoding (OSD) method and with trellis decoding.
+
+In \cite{binary_constructions}, authors consider linear cyclic codes with the locality property. They focus on optimal cyclic codes that arise from the construction of RS like LRC codes in \cite{optimal_LRC}, and give a characterization of these codes in terms of their zeros, and observe that there are many equivalent ways of constructing optimal cyclic LRC codes oven a given field.
+
+\section{List decoding}
+A code of length $n$ is called $(\tau,\ell)$-list decodable if the Hamming sphere of radius $\tau$ centered at any vector $v$ of length $n$ always contains at most $\ell$ codewords $c \in \C$. It was shown by \citeauthor{list_decoding} in \cite{list_decoding} that any code of length $n$ and distance $d$ is $(\tau_J, \ell)$-list decodable where $\tau_J = n - \sqrt{n(n-d)}$ is the Johnson radius and $\ell \in poly(n)$.
+
+It was recently shown by \citeauthor{list_decoding_LRC} in \cite{list_decoding_LRC} that the list decoding radius of certain LRC codes exceed the Johnson radius and give a general list decoding algorithm. The complexity of the algorithm is polynomial in $n$ when the number of repairing groups is constant, otherwise it grows exponentially.
