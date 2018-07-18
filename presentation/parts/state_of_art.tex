@@ -29,12 +29,13 @@
 \end{frame}
 
 \begin{frame}
-Let $\C$ be a linear code of length $n$ and dimension $k$.
+\begin{itemize}
+\item Let $\C$ be a linear code of length $n$ and dimension $k$.
 
-We say $\C$ is an $(n,k,r)$-LRC code if it has locality $r$ and has a single recovering set for each coordinate.
+\item We say $\C$ is an $(n,k,r)$-LRC code if it has locality $r$ and has a single recovering set for each coordinate.
 
-If $\C$ has $t \geq 2$ recovering sets for each coordinate, we say it is an $(n,k,r,t)$-LRC code.
-
+\item We say $\C$ is an $(n,k,r,t)$-LRC code if it has $t \geq 2$ recovering sets for each coordinate.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Bounds on LRC parameters}
@@ -44,7 +45,8 @@ If $\C$ has $t \geq 2$ recovering sets for each coordinate, we say it is an $(n,
         $$ \frac{k}{n} \leq \frac{r}{r+1} $$
     \end{thm}
     
-    \begin{thm}[Generalization of Singleton bound]
+    \begin{thm}[Extension of Singleton bound]
+        \label{thm:singl1}
         The minimum distance of $\C$ satisfies
             $$d \leq n - k - \left\lceil \frac{k}{r} \right\rceil + 2$$
         If equality holds, we call $\C$ an \textbf{optimal LRC code}.
@@ -52,10 +54,24 @@ If $\C$ has $t \geq 2$ recovering sets for each coordinate, we say it is an $(n,
 \end{frame}
 
 \begin{frame}{Bounds on LRC parameters}
-    Let $C$ be an $(n,k,r,t)$ LRC code. Then:
+Let $\C$ be an $(n,k,r,t)$ LRC code. Then:
+    \begin{thm}[Extension of Singleton bound for $t\geq 2$]
+        \label{thm:singl2}
+        The minimum distance of $\C$ is bounded as follows
+        $$d \leq n - k + 2 - \left\lceil \frac{t(k-1)+1}{t(r-1)+1} \right\rceil $$
+    \end{thm}
+    
+    In particular, for $t=1$, the bound matches the one in Theorem \ref{thm:singl1}.
+    
+\end{frame}
+
+
+
+\begin{frame}{Bounds on LRC parameters}
+    Let $\C$ be an $(n,k,r,t)$ LRC code. Then:
     \begin{thm}
         \label{thm:max_rate_t}
-        The rate of $C$ satisfies
+        The rate of $\C$ satisfies
         $$ \frac{k}{n} \leq \frac{1}{\prod_{j=1}^{t} (1 + \frac{1}{jr} )} $$
     \end{thm}
     
@@ -66,51 +82,56 @@ If $\C$ has $t \geq 2$ recovering sets for each coordinate, we say it is an $(n,
     \end{thm}
 \end{frame}   
 
+\input{parts/LRC_construction}
+
+\input{parts/LRC_example}
+
 \begin{frame}{Algebraic Geometric Codes}
-$X,Y$ smooth projective absolutely irreducible curves.
+\begin{itemize}
+\item $X,Y$ smooth projective absolutely irreducible curves.
 
-$g: X \rightarrow Y$ rational separable map of degree $r+1$
+\item $g: X \rightarrow Y$ rational separable map of degree $r+1$
 
-$g*: K(Y) \rightarrow K(X)$ associated function field mapping.
+\item $g*: K(Y) \rightarrow K(X)$ associated function field mapping.
 
-$g*$ defines a field embedding $K(Y) \hookrightarrow K(X)$ when identifying $K(Y)$ with its image.
+\item $g*$ defines a field embedding $K(Y) \hookrightarrow K(X)$ when identifying $K(Y)$ with its image.
 
-Primitive element theorem: $\exists x \in K(X)$ s.t. $K(X) = K(Y)(x)$  and
+\item Primitive element theorem: $\exists x \in K(X)$ s.t. $K(X) = K(Y)(x)$
+and $x^{r+1} + b_r x^r + ... + b_0 = 0$ for some $b_i \in K(Y)$.
 
-$x^{r+1} + b_r x^r + ... + b_0 = 0$ for some $b_i \in K(Y)$.
+\item Denote $deg(x) = h$
 
-Denote $deg(x) = h$
+\item $S = \{ P_1, ..., P_s \} \subset Y(K)$
 
-$S = \{ P_1, ..., P_s \} \subset Y(K)$
-
-Let $D \geq 0$ a divisior, deg$(D) = \ell \geq 1$, with supp$(D) \cap S = \emptyset$
+\item Let $D \geq 0$ a divisior, deg$(D) = \ell \geq 1$, with supp$(D) \cap S = \emptyset$
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-Assumptions:
+\begin{itemize}
+\item Assumptions:
+\begin{itemize}
+\item $A := g^{-1}(S) = \{P_{ij}, i=0,...,r, \ j=1,...,s\} \subseteq X(K)$
 
-$A := g^{-1}(S) = \{P_{ij}, i=0,...,r, \ j=1,...,s\} \subseteq X(K)$
+\item $g(P_{ij}) = P_j$ for all $i,j$
 
-$g(P_{ij}) = P_j$ for all $i,j$
+\item $b_i \in L(n_i D), \ i=0,...,r$ for some $n_i \in \mathbb{N}$
+\end{itemize}
 
-$b_i \in L(n_i D), \ i=0,...,r$ for some $n_i \in \mathbb{N}$
+\item Let $\{ f_1, ..., f_m \}$ basis of $L(D)$.
 
-With these assumptions:
-Let $\{ f_1, ..., f_m \}$ basis of $L(D)$.
+\item Functions $f_i$ contained in $K(Y) \Rightarrow$ constant on the fibers of $g$.
 
-Functions $f_i$ contained in $K(Y) \Rightarrow$ constant on the fibers of $g$.
+\item Riemann-Roch theorem: $m \geq \ell - g_Y +1$, ($g_Y$ genus of $Y$)
 
-Riemann-Roch theorem: $m \geq \ell - g_Y +1$, ($g_Y$ genus of $Y$)
-
-Consider the subspace $V:=\{f_j x^i, i=0,...,r-1, \ j=1,...,m\}$
+\item Consider the subspace $V:=\{f_j x^i, i=0,...,r-1, \ j=1,...,m\}$
 
 \begin{tabular}{rccl}
 $e := ev_A:$ & $V$ & $\rightarrow$ & $K^{(r+1)s}$ \\
             & $F$ & $\mapsto$ & $(F(P_{ij}), i=0,...,r, \ j=1,...,s)$
 \end{tabular}
 
-Let $\C(D,g)$ be the code defined by the image of this mapping.
-
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -133,13 +154,31 @@ Let $\C(D,g)$ be the code defined by the image of this mapping.
 \end{frame}
 
 \begin{frame}
-    \begin{tabular}{cccccc}
-        Field    &    Curve    &    Genus    &    $n$    &    $k$    &    $r$    \\
-        $\FF_{q_0^2}$ & $x^{q_0}z + x z^{q_0} = y^{q_0+1}$ & $\frac{q_0 (q_0 -1)}{2}$ & $q_0^3$ & $(\ell +1)(q_0 - 1)$ & $q_0 -1$
-    \end{tabular}
+    Extending this construction to:
+    \begin{itemize}
+    \item Families of curves (Hermitian curves and Garcia-Stichtenoth curves)
+    \item Higher-dimensional varieties
+    \end{itemize}
+    Authors constructed optimal LRC codes with large code lentgh. E.g. $n=q^2-1$ and $n=q^2+2$.
 \end{frame}
 
 \begin{frame}{List Decoding}
 A code $\C$ of length $n$ over an alphabet $A$ of size $q$ is $(\tau, \ell)$-list decodable if:
 $$\forall v \in A^n \quad \vert \{ c \in \C \vert d(v,c) \leq \tau \} \vert \leq \ell $$
+
+Johnson showed any code of length $n$ and distance $d$ is $(\tau_J, \ell)$-list decodable, where:
+\begin{itemize}
+\item $\tau_J = n - \sqrt{n(n-d)}$ the Johnson radius
+\item Size of list $\ell$ polynomial in $n$.
+\end{itemize}
+\end{frame}
+\begin{frame}{List Decoding}
+Holzbaur and Wachter-Zeh improved the Johnson radius for LRC codes
+\begin{itemize}
+\item List decode each recovering set 
+\item List decode the LRC code using combinations of previously decoded recovering sets.
+\end{itemize}
+
+Complexity and list size polynomial in $n$ when number of recovering sets remain constant.
+
 \end{frame}

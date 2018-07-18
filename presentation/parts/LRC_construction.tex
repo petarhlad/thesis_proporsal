@@ -1,7 +1,5 @@
-\subsection{Construction of LRC codes}
 
-\begin{frame}
-        \frametitle{Construction of LRC codes}
+\begin{frame}{Construction of optimal LRC code}
         We want to construct an optimal $(n,k,r)$-LRC code. \\~\\
         
         Assume $r \vert k$ and $(r+1) \vert n$. \\~\\
@@ -91,17 +89,19 @@
         $\Rightarrow$ The mapping $a \mapsto f_a$ is injective.
         
         $$\mbox{deg}(f_a(x)) \leq \mbox{deg}(x^{r-1} g(x)^{\frac{k}{r}-1}) = r-1 + (r+1)(\frac{k}{r}-1)$$
-        $$= k + \frac{k}{r} - 2 \leq n - 2$$
+        $$= k + \frac{k}{r} - 2$$
         
-        This means that two distinct encoding polynomials give rise to two distinct codevectors. $\quad \Rightarrow \quad $ The dimension of the code is $k$.
+        The dimension of the code is $k$ if $n > \mbox{deg}(f_a(x))$
+        
+        Same as minimum distance $d(\C)>0$.
     \end{proof}
 \end{frame}
 
 \begin{frame}
     \begin{proof}[Proof of optimality]
         Since the encoding is linear:
-        $$d(\C) \geq n - \max_{f_a, a\in \FF_q^k} \mbox{deg}(f_a) = n - k - \frac{k}{r} + 2 \geq n - k - \left\lceil\frac{k}{r}\right\rceil + 2$$
-        But we have that $d(\C) \leq n - k - \left\lceil\frac{k}{r}\right\rceil + 2$.
+        $$d(\C) \geq n - \max_{\ a\in \FF_q^k} \mbox{deg}(f_a) = n - k - \frac{k}{r} + 2 $$
+        But we have that $d(\C) \leq n - k - \frac{k}{r} + 2$.
         Therefore, we have equality and thus it is an optimal LRC Code.
     \end{proof}
 \end{frame}
