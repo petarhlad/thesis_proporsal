@@ -1,0 +1,49 @@
+\chapter{Coding Theory Preliminaries}
+
+\section{Linear codes}
+Let $\FF_q$ be the finite field with $q$ elements, and consider $\FF_q^n$ the vector space of dimension $n$ over $\FF_q$.
+
+\begin{defn}[Linear Code]
+An $(n,k)$ linear code over $\FF_q$ is a subspace $\C \subset \FF_q^n$ with $\dim (\C) = k$. $\C$ is said to have length $n$ and dimension $k$. Every element $c \in \C$ is called a \textit{codeword}.
+\end{defn}
+
+Consider an $(n,k)$ linear code $\C$ over $\FF_q$, and let $\mathbf{x} = x_1 \dots x_n$, $\mathbf{y} = y_1 \dots y_n$ two codewords of $\C$.
+
+\begin{defn}[Hamming Distance]
+The Hamming distance between two vectors $x = x_1 \dots x_n$ and $y = y_1 \dots y_n$ is the number of coordinates where they differ, and is denoted by dist$(x,y)$.
+\end{defn}
+
+\begin{defn}[Hamming Weight]
+The Hamming Weight of a vector $x = x_1 \dots x_n$ is the number of nonzero coordinates of $x$ and is denoted by wt$(x)$.
+\end{defn}
+
+\begin{remk}
+For a linear code $\C$ and any two codewords $x,y \in \C$:
+\begin{equation}
+\dist(x,y) = \wt(x-y)
+\end{equation}
+\end{remk}
+
+\begin{defn}[Minimum distance]
+A code $\C$ has minimum distance $d$ if any two codewords differ in at least $d$ coordinates.
+\begin{equation}
+d = \min \dist (x,y) = \min \wt (x-y), \quad x,y \in \C, x \neq y
+\end{equation}
+\end{defn}
+
+A linear code of length $n$, dimension $k$, and minimum distance $d$ will be called an $[n,k,d]$ linear code.
+
+There are several known and well studied bounds on the size of a code considering its length and distance. One that will be very important in this work is the Singleton Bound.
+
+\begin{thm}[Singleton Bound] If $\C$ is an $[n,k,d]$ code, then 
+\begin{equation}
+d \leq n - k + 1
+\end{equation}
+\end{thm}
+
+\begin{defn}[MDS Codes]
+A Maximum Distance Separable code $\C$ is a code that attains the Singleton bound with equality. That is, a code s.t.
+\begin{equation}
+d = n - k + 1
+\end{equation}
+\end{defn}

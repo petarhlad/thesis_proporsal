@@ -2,9 +2,43 @@
 
 In recent years the explosion in the volumes of data being stored online has resulted in distributed storage systems transitioning to erasure coding based schemes in order to ensure reliability with low storage overheads. On such a massive scale, unreachable or failed servers are no longer an exception but a regular occurrence and recovery from such events has to be done efficiently.
 
-Classical erasure correcting codes guarantee that data can be recovered if a bounded number of codeword coordinates is erased. However recovering data typically involves accessing all surviving coordinates. 
+Standard levels of RAID:
+\begin{itemize}[align = left, leftmargin=*]
+\item[\textbf{RAID 1:}] Consists of data mirroring. Data is written identically to $N$ drives.
+    \begin{itemize}[align = left, leftmargin=*]
+        \item[\textbf{Storage overhead:}] With $N$ times replication, the storage overhead is $N$.
+        \item[\textbf{Failure Tolerance:}] Can tolerate up to $N-1$ failed drives.
+        \item[\textbf{Repair Procedure:}] Need to read only a single drive to repair a failed one.
+    \end{itemize}
 
-In recent years Locally Recoverable Codes (LRC) emerged as the codes of choice for many such scenarios and have been implemented in a number of large scale systems (see \cite{azure} and \cite{hadoop}). LRC codes have the property that a symbol of the codeword can be recovering accessing few other symbols of the codeword (called the \textit{recovering set}).
+\item[\textbf{RAID 5:}] Consists of block-level striping with distributed parity. Parity information is distributed among the drive.
+    \begin{itemize}[align = left, leftmargin=*]
+        \item[\textbf{Storage overhead:}] $\frac{N}{N-1}$
+        \item[\textbf{Failure Tolerance:}] Can tolerate only a single failed drive.
+        \item[\textbf{Repair Procedure:}] Need to read all N-1 drives to repair failed one.
+    \end{itemize}
+\item[\textbf{RAID 6:}] Consists of block-level striping with two distributed parities.
+    \begin{itemize}[align = left, leftmargin=*]
+        \item[\textbf{Storage overhead:}] $\frac{N}{N-2}$
+        \item[\textbf{Failure Tolerance:}] Can tolerate any two failed drives.
+        \item[\textbf{Repair Procedure:}] Need to read all remaining N-2 drives to repair two failed drives (or single one).
+    \end{itemize}
+\end{itemize}
+
+
+Other data structures use Maximum Distance Separable (MDS) codes, which are those with the greatest error correcting capability.
+\begin{itemize}[align = left, leftmargin=*]
+\item[\textbf{$[n,k]$ MDS codes:}] \
+    \begin{itemize}[align = left, leftmargin=*]
+        \item[\textbf{Storage overhead:}] $\frac{n}{k}$
+        \item[\textbf{Failure Tolerance:}] Can tolerate any $n-k$ disk failures
+        \item[\textbf{Repair Procedure:}] Need to read $k$ drives to repair a failed one.
+    \end{itemize}
+\end{itemize}
+
+All these classical erasure correcting codes guarantee that data can be recovered if a bounded number of codeword coordinates is erased, by accessing the remaining coordinates. However, all the described solutions handle very poorly the recovery of a single drive failure since it typically involves accessing large amount of coordinates. This is what is called the Repair Problem, to recover a failed drive with the minimum amount of resources.
+
+In recent years Locally Recoverable Codes (LRC) emerged as the codes of choice for many such scenarios, as they solve very well the repair problem. They have been implemented in a number of large scale systems (see \cite{azure} and \cite{hadoop}). LRC codes have the property that a symbol of the codeword can be recovering accessing few other symbols of the codeword (called the \textit{recovering set}).
 
 Symbols can have more than one recovering set, and having more than one recovering set is beneficial in practice because it enables more users to access a given portion of data, thus enhancing data availability in the system.
 
